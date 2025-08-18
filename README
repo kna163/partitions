@@ -1,1 +1,1 @@
-### Cool web applet to explore partitions?
+Although the Littlewood decomposition is relatively well known in the theory of cores and quotients of partitions, explicit descriptions of the bijection seem to be quite rare, and algorithms for computing it even more so! This Python package allows one to work with the bijection via `decomp` and `from_decomp`.
