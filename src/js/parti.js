@@ -204,7 +204,7 @@ function vecToCore(vec) {
         ma = Math.max(ma,idx);
         temp[i] = idx;
     }
-    ans = [];
+    var ans = [];
     for (var i = mi; i < ma-t+1; i++) {
         if (i < temp[(i % t + t) % t]) {
             ans.push(0);
