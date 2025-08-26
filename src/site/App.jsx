@@ -7,7 +7,7 @@ export default function App() {
   
   return (
     
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.DEV ? "/" : "/partitions"}>
       <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js"></script>
       <AppRoutes />
     </BrowserRouter>
