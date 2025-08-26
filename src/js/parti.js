@@ -42,7 +42,7 @@ function partToSeq(part) {
     var cur = 0;
     var ans = [];
     for (var n of part.reverse()) {
-        for (i = 0; i < n-cur; i++) {
+        for (var i = 0; i < n-cur; i++) {
             ans.push(1);
         }
         cur = n;
@@ -213,7 +213,7 @@ function vecToCore(vec) {
             ans.push(1);
         }
     }
-    return ans;
+    return trimSeq(ans);
 }
 
 // def from_decomp(seq : Seq, quos : list[Seq]) -> Seq:
@@ -270,6 +270,6 @@ function fromDecomp(seq, quos) {
     }
     return trimSeq(ans)
 }
-module.exports = {seqToPart, partToSeq, trimSeq, core, decomp, refIdx, coreToVec, vecToCore, fromDecomp};
+export {seqToPart, partToSeq, trimSeq, core, decomp, refIdx, coreToVec, vecToCore, fromDecomp};
 // const functions = {seqToPart partToSeq trimSeq core decomp refIdx coreToVec vecToCore fromDecomp};
 

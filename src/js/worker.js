@@ -1,10 +1,10 @@
 
 
-const {seqToPart, partToSeq, trimSeq, core, 
-    decomp, refIdx, coreToVec, vecToCore, fromDecomp} = require("./parti.js");
+import {seqToPart, partToSeq, trimSeq, core, 
+    decomp, refIdx, coreToVec, vecToCore, fromDecomp} from "./parti.js";
 const functions = {seqToPart, partToSeq, trimSeq, core, decomp, refIdx, coreToVec, vecToCore, fromDecomp};
 
-const readline = require('readline');
+import readline from 'readline';
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,

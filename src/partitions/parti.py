@@ -135,7 +135,7 @@ def vec_to_core(vec : list[int]) -> Seq:
             ans.append(0)
         else:
             ans.append(1)
-    return ans
+    return trim_seq(ans)
     
 
 def from_decomp(seq : Seq, quos : list[Seq]) -> Seq: #seq is a len(quos)-core
