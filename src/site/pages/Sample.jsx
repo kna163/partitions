@@ -4,7 +4,7 @@ import RevealMath from "reveal.js/plugin/math/math.esm.js";
 // import "reveal.js/dist/reveal.css";
 // import "reveal.js/dist/theme/sky.css";
 import Navbar from "../components/Navbar.jsx";
-
+import RoughBasic from "../components/RoughBasic.jsx";
 
 import RevealWrapper from "../components/RevealWrapper.jsx";
 // Make sure reveal.js is installed with npm for the following imports to work
@@ -22,8 +22,11 @@ return (
         <section>
           <h2>Slide 1</h2>
           <p>Hello world!</p>
+          <RoughBasic />
         </section>
-        <section><h2>Slide 2</h2></section>
+        <section><h2>Slide 2</h2>
+                  <RoughBasic />
+</section>
       </RevealWrapper>
       </div>
       
