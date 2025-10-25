@@ -11,6 +11,7 @@ export default function Navbar() {
             <NavLink to="/basic">Text Calculator</NavLink>
             {/* <NavLink to="/visual">Visual Editor</NavLink> */}
             <NavLink to="/littlewood">Littlewood</NavLink>
+            <NavLink to="/notes">Notes</NavLink>
             {/* <NavLink to="/sample">Sample</NavLink> */}
         </nav>
     );
