@@ -6,6 +6,9 @@ import RevealMath from "reveal.js/plugin/math/math.esm.js";
 import Navbar from "../components/Navbar.jsx";
 import RoughBasic from "../components/RoughBasic.jsx";
 
+import notesURL from '../assets/Partitions.pdf';
+
+
 import RevealWrapper from "../components/RevealWrapper.jsx";
 // Make sure reveal.js is installed with npm for the following imports to work
 // Plugins
@@ -18,7 +21,7 @@ return (
     <>
       <Navbar />
       <div style={{height:"100vh", width:"100%", display: "flex", marginLeft: "auto", marginRight: "auto"}}>
-        <embed src="/src/site/assets/Partitions.pdf" width="90%" />
+        <embed src={notesURL} width="90%" />
        {/* <iframe src="http://docs.google.com/gview?
 url=..//pub/papers/google.pdf&embedded=true"
 style="width:600px; height:500px;" frameborder="0"></iframe> */}
