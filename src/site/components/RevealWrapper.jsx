@@ -15,6 +15,7 @@ export default function RevealWrapper({ children }) {
     revealRef.current = new Reveal(deckRef.current, {
       plugins: [RevealNotes, RevealZoom, RevealMath],
       controls: true,
+      fragments: false, //debug
       math: {
         mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
         config: 'TeX-AMS_HTML-full',
