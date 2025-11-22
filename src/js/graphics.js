@@ -45,4 +45,54 @@ function offset(pts, vec) {
     return pts.map((p) => [p[0]+vec[0], p[1]+vec[1]]);
 }
 
-export {partToCoords, scale, rotate, offset, bbox, bboxCenter};
+function pathLabel(ctx,path,scale) { //assumes path goes from bottom left to upper right
+    let prev = path[0];
+    for (let i = 1; i < path.length; i++) {
+        let cur = path[i];
+        if (prev[0] == cur[0]) { //vertical segment
+            for (let j = cur[1]; j < prev[1]; j += scale) {//canvas coords, bottom left has higher y val
+                ctx.fillText("0",prev[0]+.1*scale,j+.7*scale);
+            }
+        }
+        else {
+            for (let j = prev[0]; j < cur[0]; j+= scale) {
+                ctx.fillText("1",j+.5*scale,prev[1]+.4*scale);
+            }
+        }
+        prev = path[i];
+    }
+    return;
+}
+
+function pathLabel2(ctx,path,colors,scale) { //alternates between different colors
+    let colori = 0;
+    let prev = path[0];
+    for (let i = 1; i < path.length; i++) {
+        let cur = path[i];
+        if (prev[0] == cur[0]) { //vertical segment
+            for (let j = prev[1]-scale; j >= cur[1]; j -= scale) {//canvas coords, bottom left has higher y val
+                ctx.fillStyle = colors[colori];
+                colori = (colori + 1) % colors.length;
+                ctx.fillText("0",prev[0]+.1*scale,j+.7*scale);
+            }
+        }
+        else {
+            for (let j = prev[0]; j < cur[0]; j+= scale) {
+                ctx.fillStyle = colors[colori];
+                colori = (colori + 1) % colors.length;
+                ctx.fillText("1",j+.5*scale,prev[1]+.4*scale);
+            }
+        }
+        prev = path[i];
+    }
+    return;
+}
+// function ltext(ctx,x,y,scale) {
+//     ctx.fillText("0",x+.2*scale,y+.5*scale);
+// }
+
+// function btext(ctx,str,x,y,scale) {
+//     ctx.fillText("1",x+.5*scale,y+.2*scale);
+// }
+
+export {partToCoords, scale, rotate, offset, bbox, bboxCenter, pathLabel, pathLabel2};

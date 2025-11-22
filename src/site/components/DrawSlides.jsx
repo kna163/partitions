@@ -227,6 +227,148 @@ export default function DrawSlides({ canvases }) {
                 rc.polygon(g.offset(b1,[0,2*scale]), {...partBoxStyle2, fill: "mediumorchid"});
                 };
                 break;
+            case 17 : {
+                ctx.font = "15px Arial";
+                rc.polygon(g.scale(g.partToCoords([7,6,4,4,2,1]),scale), {...partStyle, fill: "darkseagreen"});
+                g.pathLabel(ctx,g.scale([[0,8],[0,6],[1,6],[1,5],[2,5],[2,4],[4,4],[4,2],[6,2],[6,1],[7,1],[7,0],[10,0]],scale),scale);
+                rc.line(0,0,0,8*scale);
+                rc.line(0,0,10*scale,0);
+                };
+                break;
+            case 18 : {
+                ctx.font = "15px Arial";
+                rc.polygon(g.scale(g.partToCoords([7,6,4,4,2,1]),scale), {...partStyle, fill: "darkseagreen"});
+                g.pathLabel(ctx,g.scale([[0,8],[0,6],[1,6],[1,5],[2,5],[2,4],[4,4],[4,2],[6,2],[6,1],[7,1],[7,0],[10,0]],scale),scale);
+                rc.line(0,0,0,8*scale);
+                rc.line(0,0,10*scale,0);
+                rc.line(0,0,5*scale,5*scale,{stroke: 'lightcoral'});
+                ctx.font = "25px Arial";
+                ctx.fillStyle = "red";
+                ctx.fillText("_",scale*1,scale*2.5);
+                ctx.fillText("≥0",scale*2,scale*1.5);
+                };
+                break;
+            case 19 : {
+                ctx.font = "15px Arial";
+                rc.polygon(g.scale(g.partToCoords([7,6,4,4,2,1]),scale), {...partStyle, fill: "darkseagreen"});
+                g.pathLabel(ctx,g.scale([[5,2],[6,2],[6,1]],scale),scale);
+                rc.line(0,0,0,8*scale);
+                g.pathLabel(ctx,g.scale([[5,2],[5,1],[6,1]],scale),scale);
+                rc.polygon(g.scale(g.offset(g.partToCoords([1]),[5,1]),scale), {...partBoxStyle2, fill: "lightcoral"});
+
+                rc.line(0,0,10*scale,0);
+                }
+                break;
+            case 20 : { //remove t-rim hook
+                ctx.font = "15px Arial";
+                rc.polygon(g.scale(g.partToCoords([7,6,4,4,2,1]),scale), {...partStyle, fill: "darkseagreen"});
+                g.pathLabel(ctx,g.scale([[1,5],[2,5],[2,4],[4,4],[4,3]],scale),scale);
+
+                g.pathLabel(ctx,g.scale([[1,5],[1,3],[4,3]],scale),scale);
+                rc.polygon(g.scale(g.offset(g.partToCoords([3,1]),[1,3]),scale), {...partBoxStyle2, fill: "lightcoral"});
+                //second...
+                g.pathLabel(ctx,g.scale([[4,2],[6,2],[6,1],[7,1],[7,0]],scale),scale);
+                g.pathLabel(ctx,g.scale([[4,2],[4,1],[5,1],[5,0],[7,0]],scale),scale);
+                rc.polygon(g.scale(g.offset([[1,0],[3,0],[3,1],[2,1],[2,2],[0,2],[0,1],[1,1],[1,0]],[4,0]),scale),{...partBoxStyle2, fill: "lightcoral"});
+
+                };
+                break;
+
+            case 21 : { //remove simple 11...10 rim hook
+                ctx.font = "15px Arial";
+                rc.polygon(g.scale(g.partToCoords([9,8,4,4,1,1]),scale), {...partStyle, fill: "darkseagreen"});
+                g.pathLabel(ctx,g.scale([[4,2],[8,2],[8,1]],scale),scale);
+                g.pathLabel(ctx,g.scale([[4,2],[4,1],[8,1]],scale),scale);
+                rc.polygon(g.scale(g.offset(g.partToCoords([4]),[4,1]),scale), {...partBoxStyle2, fill: "lightcoral"});
+                };
+                break;
+
+            case 22 : { //remove inductive 1...0...0 rim hook
+                ctx.font = "15px Arial";
+                rc.polygon(g.scale(g.partToCoords([9,8,4,4,1,1]),scale), {...partStyle, fill: "darkseagreen"});
+                rc.polygon(g.scale(g.offset(g.partToCoords([3]),[1,3]),scale), {...partBoxStyle2, fill: "lightcoral"});
+                rc.polygon(g.scale(g.offset(g.partToCoords([1]),[3,2]),scale), {...partBoxStyle2, fill: "slateblue"});
+
+                g.pathLabel(ctx,g.scale([[1,4],[4,4],[4,2]],scale),scale);
+                g.pathLabel(ctx,g.scale([[1,4],[1,3],[4,3]],scale),scale);
+                g.pathLabel(ctx,g.scale([[3,3],[3,2],[4,2]],scale),scale);
+                };
+                break;
+            case 23 : { //example 3-quo calculation [9,4,4,4,4,3,2,1] -> [3,1], ([1,1],[2,1],[2,1,1])
+                ctx.font = "15px Arial";
+                rc.polygon(g.scale(g.partToCoords([9,4,4,4,4,3,2,1]),scale), {...partStyle, fill: "darkseagreen"});
+
+                g.pathLabel2(ctx,g.scale([[0,11],[0,8],[1,8],[1,7],[2,7],[2,6],[3,6],[3,5],[4,5],[4,1],[9,1],[9,0],[12,0]],scale),["lightcoral","slateblue","mediumorchid"],scale);
+                rc.line(0,0,0,11*scale);
+                rc.line(0,0,12*scale,0);
+                rc.line(0,0,7*scale,7*scale);
+
+                };
+                break;
+            case 24 : { // the 3-quo
+                ctx.font = "15px Arial";
+                rc.polygon(g.scale(g.partToCoords([1,1]),scale), {...partStyle, fill: "mediumorchid"});
+                g.pathLabel2(ctx,g.scale([[0,3],[0,2],[1,2],[1,0],[4,0]],scale),["mediumorchid"],scale);
+                rc.line(0,0,0,3*scale);
+                rc.line(0,0,4*scale,0);
+
+                rc.polygon(g.scale(g.offset(g.partToCoords([2,1]),[6,0]),scale), {...partStyle, fill: "lightcoral"});
+                g.pathLabel2(ctx,g.scale(g.offset([[0,2],[1,2],[1,1],[2,1],[2,0],[5,0]],[6,0]),scale),["lightcoral"],scale);
+                rc.line(6*scale,0,11*scale,0);
+                rc.line(6*scale,0,6*scale,3*scale);
+
+                rc.polygon(g.scale(g.offset(g.partToCoords([2,1,1]),[0,4]),scale), {...partStyle, fill: "slateblue"});
+                g.pathLabel2(ctx,g.scale(g.offset([[0,5],[0,3],[1,3],[1,1],[2,1],[2,0]],[0,4]),scale),["slateblue"],scale);
+                rc.line(0,4*scale,0,9*scale);
+                rc.line(0,4*scale,3*scale,4*scale);
+                };
+                break;
+            case 25 : { // t-rim hooks
+                ctx.font = "15px Arial";
+                rc.polygon(g.scale(g.partToCoords([9,4,4,4,4,3,2,1]),scale), {...partStyle, fill: "darkseagreen"});
+                rc.polygon(g.scale(g.offset(g.partToCoords([2,1]),[1,5]),scale), {...partBoxStyle,fill: "mediumorchid"});
+                g.pathLabel2(ctx,g.scale([[0,11],[0,8],[1,8],[1,7],[2,7],[2,6],[3,6],[3,5],[4,5],[4,1],[9,1],[9,0],[12,0]],scale),["lightcoral","slateblue","mediumorchid"],scale);
+                rc.polygon(g.scale(g.offset(g.partToCoords([1,1,1]),[3,2]),scale), {...partBoxStyle,fill:"lightcoral"});
+                rc.line(0,0,0,11*scale);
+                rc.line(0,0,12*scale,0);
+                rc.line(0,0,7*scale,7*scale);
+                };
+                break;
+            case 26 : { //corresponding 1-hooks
+                ctx.font = "15px Arial";
+                rc.polygon(g.scale(g.partToCoords([1,1]),scale), {...partStyle, fill: "mediumorchid"});
+                g.pathLabel2(ctx,g.scale([[0,3],[0,2],[1,2],[1,0],[4,0]],scale),["mediumorchid"],scale);
+                rc.polygon(g.scale(g.offset(g.partToCoords([1]),[0,1]),scale), {...partBoxStyle2,fill:"black"});
+                rc.line(0,0,0,3*scale);
+                rc.line(0,0,4*scale,0);
+
+
+                rc.polygon(g.scale(g.offset(g.partToCoords([2,1]),[6,0]),scale), {...partStyle, fill: "lightcoral"});
+                g.pathLabel2(ctx,g.scale(g.offset([[0,2],[1,2],[1,1],[2,1],[2,0],[5,0]],[6,0]),scale),["lightcoral"],scale);
+                rc.polygon(g.scale(g.offset(g.partToCoords([1]),[7,0]),scale), {...partBoxStyle2,fill:"black"});
+                rc.line(6*scale,0,11*scale,0);
+                rc.line(6*scale,0,6*scale,3*scale);
+
+                rc.polygon(g.scale(g.offset(g.partToCoords([2,1,1]),[0,4]),scale), {...partStyle, fill: "slateblue"});
+                g.pathLabel2(ctx,g.scale(g.offset([[0,5],[0,3],[1,3],[1,1],[2,1],[2,0]],[0,4]),scale),["slateblue"],scale);
+                rc.line(0,4*scale,0,9*scale);
+                rc.line(0,4*scale,3*scale,4*scale);
+                };
+                break;
+            case 27 : { //copy of 18th,
+                ctx.font = "15px Arial";
+                rc.polygon(g.scale(g.partToCoords([7,6,4,4,2,1]),scale), {...partStyle, fill: "darkseagreen"});
+                g.pathLabel(ctx,g.scale([[0,8],[0,6],[1,6],[1,5],[2,5],[2,4],[4,4],[4,2],[6,2],[6,1],[7,1],[7,0],[10,0]],scale),scale);
+                rc.line(0,0,0,8*scale);
+                rc.line(0,0,10*scale,0);
+                rc.line(0,0,5*scale,5*scale,{stroke: 'lightcoral'});
+                ctx.font = "25px Arial";
+                ctx.fillStyle = "red";
+                ctx.fillText("_",scale*1,scale*2.5);
+                ctx.fillText("≥0",scale*2,scale*1.5);
+                };
+                break;
+
         }
         ctx.restore();
     });
