@@ -242,7 +242,7 @@ def cmp_dom(p1 : Part, p2 : Part) -> int | None :
         case False, True:
             return 1 if rev else -1
         case False, False:
-            raise RuntimeError "should be unreachable"
+            raise RuntimeError("should be unreachable")
 
 def conj_part(part : Part) -> Part :
     # look at difference between one and the next, it affects the multiplicity
