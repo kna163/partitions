@@ -1,8 +1,5 @@
-import sys
-print(sys.path)
 import random
 import partitions.parti as parti
-print(sys.path)
 
 def test_seq_part():
     p = [2,2,1]
@@ -86,4 +83,4 @@ def test_decomp2():
         s = [1] + [random.randint(0,1) for _ in range(random.randint(1,50))] + [0]
         t = random.randint(2,10)
         c, quos = parti.decomp(s,t)
-        parti.from_decomp(c,quos) == s
+        assert parti.from_decomp(c,quos) == s
