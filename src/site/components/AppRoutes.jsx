@@ -5,6 +5,8 @@ import Basic from '../pages/Basic';
 import Visual from '../pages/Visual';
 import Sample from '../pages/Sample';
 import Notes from '../pages/Notes';
+import Docs from '../pages/Docs';
+
 import NotFound from '../pages/NotFound';
 
 export default function AppRoutes() {
@@ -16,6 +18,7 @@ export default function AppRoutes() {
       <Route path="/visual" element={<Visual />} />
       <Route path="/sample" element={<Sample />} />
       <Route path="/notes" element={<Notes />} />
+      <Route path="/docs" element={<Docs />} />
 
       <Route path="*" element={<NotFound />} />
     </Routes>

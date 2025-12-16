@@ -29,6 +29,7 @@ Example:
 
 """
 from collections.abc import Iterator
+import bisect
 
 Seq = list[int]
 Part = list[int]
@@ -394,7 +395,7 @@ def get_pnk(n : int,k : int) -> int:
         PNK_TABLE[(n,k)] = ans
         return ans
         
-def clear_table() -> None:
+def clear_pnk_table() -> None:
     PNK_TABLE.clear()
 
 def lex_order(part : Part) -> int : #gives the lex order of part of size n
@@ -415,11 +416,111 @@ def from_lex(n : int, i : int) -> Part : #gives the ith partition of n
         if get_pnk(n,k) > i:
             return [k] + from_lex(n-k,i-get_pnk(n,k-1))
 
+CHAR_VALUE_TABLE = {((),()): 1}
+PCHAR_VALUE_TABLE = {((),()): 1} #perm char
 
-def perm_table(n : int) : #generates the permutation character table of Sn 
-    pass
+def part_minus_rim(part : Part, k : int) -> tuple(list[Part]):
+    #
+    seq = part_to_seq(part)
+    if len(seq) <= k:
+        return [],[]
+    cnt = 0
+    for i in range(k):
+        if seq[k] == 0:
+            cnt ^= 1
+    pos = []
+    neg = []
+    for i in range(len(seq)-k):
+        if seq[i] == 1 and seq[i+k] == 0:
+            seq[i] = 0
+            seq[i+k] = 1
+            if not cnt:
+                pos.append(seq_to_part(seq))
+            else:
+                neg.append(seq_to_part(seq))
+            seq[i] = 1
+            seq[i+k] = 0
+        cnt ^= seq[i] ^ seq[i+k]
+    return pos,neg
+
+
+def clear_char_val_table() -> None:
+    CHAR_VALUE_TABLE.clear()
+    CHAR_VALUE_TABLE[((),())] = 1
+#Murnaghan - Nakayama Rule
+
+def get_char_value(char : Part, conj_class : Part) -> int:
+    if (tuple(char), tuple(conj_class)) in CHAR_VALUE_TABLE:
+        return CHAR_VALUE_TABLE[(tuple(char),tuple(conj_class))]
+    ans = 0
+    pos,neg = part_minus_rim(char,conj_class[0])
+    for p in pos:
+        ans += CHAR_VALUE_TABLE[(tuple(p),tuple(conj_class[1:]))]
+    for p in neg:
+        ans -= CHAR_VALUE_TABLE[(tuple(p),tuple(conj_class[1:]))]
+    CHAR_VALUE_TABLE[(tuple(char),tuple(conj_class))] = ans
+    return ans
+    
+def clear_pchar_val_table() -> None:
+    PCHAR_VALUE_TABLE.clear()
+    PCHAR_VALUE_TABLE[((),())] = 1
+
+def get_pchar_value(pchar : Part, conj_class : Part) -> int:
+    if (tuple(pchar), tuple(conj_class)) in PCHAR_VALUE_TABLE:
+        return PCHAR_VALUE_TABLE[(tuple(pchar),tuple(conj_class))]
+    if conj_class[0] > pchar[0]:
+        return 0
+    if len(pchar) == 1:
+        return 1
+    if conj_class[0] == 1:
+        ans = 1
+        for i in range(1,sum(pchar)+1):
+            ans *= i
+        for p in pchar:
+            for i in range(1,p+1):
+                ans //= i
+        return ans
+    ans = 0
+    for i in range(len(pchar)):
+        if pchar[i] < conj_class[0]:
+            break
+        a = pchar[i] - conj_class[0]
+        other = pchar[:i] + pchar[i+1:]
+        if a != 0:
+            bisect.insort(other, a, key = lambda x: -x)
+        ans += get_pchar_value(other,conj_class[1:])
+    return ans
+
+
+def perm_table(n : int) -> dict[(Part,Part),int]: #generates the permutation character table of Sn
+    ans = {}
+    for lamb in gen_parts_n(n):
+        for mu in gen_parts_n(n):
+            ans[tuple(lamb),tuple(mu)] = get_pchar_value(lamb,mu)
+    return ans
+
+def perm_table2(n : int) -> list[list[int]]: #same but uses the lex ordering for indexing
+    ans = []
+    for lamb in gen_parts_n(n):
+        ans.append([])
+        for mu in gen_parts_n(n):
+            ans[-1].append(get_pchar_value(lamb,mu))
+    return ans
+
 def char_table(n : int) : #generates the irreducible character table of Sn
-    pass
+    ans = {}
+    for lamb in gen_parts_n(n):
+        for mu in gen_parts_n(n):
+            ans[tuple(lamb),tuple(mu)] = get_char_value(lamb,mu)
+    return ans
+
+def char_table2(n : int) -> list[list[int]]: #same but uses the lex ordering for indexing
+    ans = []
+    for lamb in gen_parts_n(n):
+        ans.append([])
+        for mu in gen_parts_n(n):
+            ans[-1].append(get_char_value(lamb,mu))
+    return ans
 # def update(self,seq = [], part = []):
 #     if seq:
 #         self.seq = seq
