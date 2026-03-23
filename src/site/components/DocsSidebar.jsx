@@ -142,10 +142,12 @@ export default function DocsSidebar() {
         overflowY: "auto", // independent scroll
       }}
     >
-      <h3>Docs</h3>
-      <button onClick={() => setCollapsed(!collapsed)}>
+      <button className = "docsExpandButton" onClick={() => setCollapsed(!collapsed)}>
         {collapsed ? "←" : "→"}
+        {/* style={{}} */}
       </button>
+      <h3>Docs</h3>
+
       {!collapsed &&
         docs.map((item, idx) => <CollapsibleItem key={idx} item={item} />)}
     </div>

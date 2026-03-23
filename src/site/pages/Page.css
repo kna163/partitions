@@ -1,0 +1,46 @@
+body {
+    background-color: #ffffff; /* clean white background */
+    color: #111111;            /* dark text for readability */
+    font-family: Arial, Helvetica, sans-serif; /* simple modern font */
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    max-width: 1200px;        /* content width */
+    margin: 2rem auto;        /* centered with vertical spacing */
+    padding: 1rem;            /* inner spacing */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #111111;           /* headings in dark color to match body */
+    margin-bottom: 1rem;
+}
+
+p, li {
+    line-height: 1.6;
+    color: #222222;           /* slightly lighter than headings */
+}
+
+a {
+    color: #008844;           /* matches navbar link color */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+button {
+    background-color: #3ee7fd; /* matches navbar base color */
+    color: #111111;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+button:hover {
+    background-color: #5fff9c; /* hover gradient complement */
+}

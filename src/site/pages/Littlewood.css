@@ -1,0 +1,9 @@
+/* .reveal,
+.reveal .slides,
+.reveal .slides section {
+  background: transparent !important;
+} */
+
+.reveal {
+  background: radial-gradient(#f7fbfc 0%, #add9e4 100%)
+}

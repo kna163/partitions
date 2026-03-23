@@ -7,13 +7,15 @@ export default function Navbar() {
     return (
         <nav>
             <RoughBasic />
-            <NavLink to="/" end> Home </NavLink>
-            <NavLink to="/basic">Text Calculator</NavLink>
-            <NavLink to="/docs">Docs</NavLink>
-            {/* <NavLink to="/visual">Visual Editor</NavLink> */}
-            <NavLink to="/littlewood">Littlewood</NavLink>
-            <NavLink to="/notes">Notes</NavLink>
-            {/* <NavLink to="/sample">Sample</NavLink> */}
+            <div className="navbar-links">
+                <NavLink to="/" end> Home </NavLink>
+                <NavLink to="/basic">Text Calculator</NavLink>
+                <NavLink to="/docs">Docs</NavLink>
+                {/* <NavLink to="/visual">Visual Editor</NavLink> */}
+                <NavLink to="/littlewood">Littlewood</NavLink>
+                <NavLink to="/notes">Notes</NavLink>
+                {/* <NavLink to="/sample">Sample</NavLink> */}
+            </div>
         </nav>
     );
 }

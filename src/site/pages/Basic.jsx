@@ -38,16 +38,9 @@ export default function Basic() {
   }, [debouncedValue]);
   return (
     <>
-      <div style={{ display: "flex", flexDirection: "column", height: "0vh" }}></div>
       <Navbar />
       <div style={{ display: "flex", flex: 1, minHeight: 0 }}>
-       <div
-          style={{
-            flex: 1,
-            padding: "1rem",
-            overflowY: "auto", // independent scroll
-          }}
-        >
+       <div style={{flex: 1, padding: "1rem", overflowY: "auto", }}>
           <h1> Text-based Editor!</h1>
 
           <p>For most functions, it only accepts the step sequence of the partition, (input variable will be named seq as well) so for the ordinary partition [5,3,1,1], you can get the step sequence with partToSeq([5,3,1,1]).

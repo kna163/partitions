@@ -6,3 +6,16 @@
   padding: 2px 4px;
   border-radius: 4px;
 }
+.docsExpandButton {
+    background-color: #b4b4b4; /* matches navbar base color */
+    color: #111111;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.docsExpandButton:hover {
+  background-color: #474747;
+}

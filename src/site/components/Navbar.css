@@ -2,23 +2,53 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #3ee7fd;
+    background: linear-gradient(90deg, #3ee7fd, #6fffb0);
     padding: 0.75rem 1.5rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    border-radius: 0 0 6px 6px;
+    z-index: 1000; 
 }
 
+/* container for links */
 .navbar-links {
     display: flex;
-    gap: 1rem;
+    align-items: center;
 }
 
+/* base link styling */
 .navbar-links a {
-    color: #008844;
+    position: relative;
+    color: #004d2b;
     text-decoration: none;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    transition: background 0.2s;
+    padding: 0.5rem 1.2rem;
+    font-weight: 500;
+
+    /* button feel */
+    background: linear-gradient(180deg, #ffffffaa, #ffffff55);
+    border-radius: 6px;
+
+    transition: all 0.25s ease;
 }
 
-nav a:hover {
-    background: #5fff9c;
+/* vertical separators */
+.navbar-links a:not(:last-child) {
+    border-right: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+/* spacing so border doesn't touch text */
+.navbar-links a {
+    margin-right: 0.25rem;
+}
+
+/* hover effect */
+.navbar-links a:hover {
+    background: linear-gradient(180deg, #5fff9c, #2ecc71);
+    color: #00331a;
+    transform: translateY(-1px);
+}
+
+/* active link (React Router adds this automatically) */
+.navbar-links a.active {
+    background: linear-gradient(180deg, #2ecc71, #27ae60);
+    color: white;
 }

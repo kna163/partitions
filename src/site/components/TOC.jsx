@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import './TOC.css'
 
 export default function TOC() {
   const sections = useRef([]);
@@ -40,15 +41,13 @@ export default function TOC() {
   }, []);
 
   return (
-    <aside className="sticky top-6 w-56 text-sm">
-      <ul className="space-y-2">
+    <aside className="toc">
+      <ul>
         {sections.current.map((s) => (
           <li key={s.id}>
             <button
               onClick={() => scrollTo(s.id)}
-              className={`w-full text-left px-2 py-1 rounded ${
-                active === s.id ? 'font-bold bg-gray-100' : ''
-              }`}
+              className={active === s.id ? 'active' : ''}
             >
               {s.title}
             </button>

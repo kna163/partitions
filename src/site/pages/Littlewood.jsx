@@ -1,9 +1,8 @@
 import Navbar from "../components/Navbar.jsx";
 import DrawSlides from "../components/DrawSlides.jsx";
+import './Littlewood.css';
 
 import { useEffect, useRef, createRef } from "react";
-import RevealMarkdown from "reveal.js/plugin/markdown/markdown.esm.js";
-import RevealMath from "reveal.js/plugin/math/math.esm.js";
 
 
 import RevealWrapper from "../components/RevealWrapper.jsx";
@@ -12,7 +11,6 @@ import RevealWrapper from "../components/RevealWrapper.jsx";
 import RevealNotes from 'reveal.js/plugin/notes/notes';
 import RevealZoom from 'reveal.js/plugin/zoom/zoom';
 
-
 export default function Littlewood() {
   const ncanvases = 30;
   const canvasRefs = useRef([...Array(ncanvases)].map(() => createRef()));
@@ -20,6 +18,7 @@ export default function Littlewood() {
 
 return (
     <>
+      <div style={{padding:"8px", backgroundColor: "#FFFFFF", color: "#FF0000", minHeight: "100vh"}}>
       <Navbar />
       <div style={{height:"90vh", width:"100%"}}>
        <RevealWrapper>
@@ -404,6 +403,7 @@ return (
       </RevealWrapper>
       </div>
       <DrawSlides canvases={canvases} />
+      </div>
     </>
   )
 

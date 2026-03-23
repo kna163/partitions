@@ -4,6 +4,8 @@ import Navbar from "../components/Navbar.jsx";
 import { useEffect, useRef } from "react";
 import rough from 'roughjs';
 
+import './Page.css';
+
 
 export default function Home() {
   const canvasRef = useRef(null);
