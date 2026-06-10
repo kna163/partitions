@@ -521,6 +521,115 @@ def char_table2(n : int) -> list[list[int]]: #same but uses the lex ordering for
         for mu in gen_parts_n(n):
             ans[-1].append(get_char_value(lamb,mu))
     return ans
+
+def raise_op(part : Part) -> list[Part]:
+    #finds all partitions immediately above the given one, as a list of Parts in ascending lex order
+    if not part:
+        return [[1]]
+    ans = []
+    ans.append(part + [1])
+    for i in range(len(part)-1):
+        if part[-i-1] != part[-i-2]:
+            t = part[:]
+            t[-i] += 1
+            ans.append(t)
+    t = part[:]
+    t[0] += 1
+    ans.append(t)
+    return t
+
+def lower_op(part : Part) -> list[Part]:
+    if not part or part == [1]:
+        return []
+    ans = []
+    for i in range(len(part)-1):
+        if part[i] != part[i+1]:
+            t = part[:]
+            t[i] -=1
+            ans.append(t)
+    if part[-1] == 1:
+        ans.append(part[:-1])
+    else:
+        t = part[:]
+        t[-1] -=1
+        ans.append(t)
+    return ans
+
+def _res_node_seqs(part : Part, p : int) -> list[tuple[str | int]] :
+    def m_fix(x,m): #x % m, ensures positive residue
+        return (x%m + m) % m
+    conj = conj_part(part)
+    ress = [[] for _ in range(p)]
+    prev = None
+    for i in range(len(conj)):
+        if conj[i] != prev:
+            #indent
+            ress[m_fix(-conj[i]+i,p)].append(("I",i))
+        if i == len(conj)-1 or conj[i] != conj[i+1]:
+            #corner
+            ress[m_fix(-conj[i]+i+1,p)].append(("R",i))
+        prev = conj[i]
+    ress[len(conj) % p].append(("I",len(conj)))
+    return ress
+
+def raise_pgood(part : Part, p : int) -> list[Part]:
+    #returns list of all pgood partitions above it
+    #see https://projecteuclid.org/journals/communications-in-mathematical-physics/volume-181/issue-1/Hecke-algebras-at-roots-of-unity-and-crystal-bases-of/cmp/1104287629.pdf
+    conj = conj_part(part)
+    ress = _res_node_seqs(part,p)
+    ans = []
+    for r in range(p):
+        s = []
+        for n_type, col in ress[r]:
+            if n_type == "I":
+                if s and s[-1][0] == "R":
+                    s.pop()
+                else:
+                    s.append(("I",col))
+            else:
+                s.append(("R",col))
+        if s and s[0][0] == "I":
+            if s[-1][0] == "I":
+                i = s[-1][1]
+            else:
+                j = bisect.bisect_left(s, True, key = lambda x : x[0] == "R")
+                i = s[j-1][1]
+            t = conj[:]
+            if i == len(conj):
+                t.append(1)
+            else:
+                t[i] += 1
+            ans.append(conj_part(t))
+    return ans
+
+
+def lower_pgood(part : Part, p : int) -> list[Part]:
+    #returns list of all pgood partitions below it
+    conj = conj_part(part)
+    ress = _res_node_seqs(part,p)
+    ans = []
+    for r in range(p):
+        s = []
+        for n_type, col in ress[r]:
+            if n_type == "I":
+                if not s:
+                    continue
+                else:
+                    s.pop()
+            else:
+                s.append(("R",col))
+        if s:
+            t = conj[:]
+            t[s[0][1]] -= 1
+            ans.append(conj_part(t))
+    return ans
+
+        
+
+
+
+# def raise_vec(part : Part) -> dict[Part,int]:
+
 # def update(self,seq = [], part = []):
 #     if seq:
 #         self.seq = seq

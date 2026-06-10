@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import Home from '../pages/Home';
 import Littlewood from '../pages/Littlewood';
 import Basic from '../pages/Basic';
-import Visual from '../pages/Visual';
+import Visualizer from '../pages/Visualizer';
 import Sample from '../pages/Sample';
 import Notes from '../pages/Notes';
 import Docs from '../pages/Docs';
@@ -15,7 +15,7 @@ export default function AppRoutes() {
       <Route path="/" element={<Home />} />
       <Route path="/littlewood" element={<Littlewood />} />
       <Route path="/basic" element={<Basic />} />
-      <Route path="/visual" element={<Visual />} />
+      <Route path="/visualizer" element={<Visualizer />} />
       <Route path="/sample" element={<Sample />} />
       <Route path="/notes" element={<Notes />} />
       <Route path="/docs" element={<Docs />} />

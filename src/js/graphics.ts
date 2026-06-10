@@ -1,65 +1,32 @@
+type Part = number[];
+type Coords = 
 
-function partToCoords(part)  {
+function partToCoords(part : Part) :  {
     let i = 0;
     let coords = [[0,0]];
-    let prev = -1;
-    while (i < part.length) {
-        if (part[i] != prev) {
-            coords.push([part[i],i]);
-        }
-        prev = part[i]
+    for (const row of part) {
+        coords.push([row, i]);
         i++;
-        if (i < part.length && part[i] == part[i-1]) {
-            continue
-        }
-        else {
-            coords.push([part[i-1],i])
-        }
+        coords.push([row, i]);
     }
-    coords.push([0,i]);
+    coords.push([0, i]);
+    coords.push([0,0]);
     return coords;
 }
 
-function skewPartToCoords(p1,p2) {
+function skewPartToCoords(p1 : Part,p2 : Part) {
     /*
     Assumes p1 dominates p2, that is for all i in range(len(p1)), p1[i] > p2[i]
     */
-
-    // let ending = p2.length < p1.length ? (partToCoords(p1.slice(p2.length))).map((x => [x[0],x[1]+p2.length])) : []
     function split(p1,p2) {
-        let i = 0;
-        while (i < Math.min(p1.length,p2.length)) {
-            if (i < p1.length-1 && p2[i] >= p1[i+1] ) {
-                return [p1.slice(0,i+1), p2.slice(0,i+1), p1.slice(i+1), p2.slice(i+1)];
-            }
-            i++;
-        }
-        return [p1,p2,[],[]]
+        i = 0;
+        while (i < p1.length)
+        return
     }
-    function helper(p1,p2) {
-        if (p1.length == p2.length && p1.every((x,i) => x == p2[i])) {
-            return []
-        }
-        if (p1.length != p2.length) {
-            return partToCoords(p1).slice(1).concat(partToCoords(p2).slice(1).reverse())
-        }
 
-        return partToCoords(p1).slice(1,-1).concat(partToCoords(p2).slice(1,-1).reverse())
-    }
-    let i = 0;
-    let [x,y,xrem,yrem] = split(p1,p2);
-    let ans = []
-    while (xrem.length > 0) {
-        let temp = helper(x,y).map(z => [z[0],z[1] + i]);
-        i += x.length;
-        if (temp.length > 0) {ans.push(temp)}
-        [x,y,xrem,yrem] = split(xrem,yrem);
-    }
-    if (x.length > 0) {
-        let temp = helper(x,y).map(z => [z[0],z[1]+i]);
-        if (temp.length > 0) {ans.push(temp)}
-    }
-    return ans;
+
+
+    return;
 }
 
 function bbox(pts) {
@@ -145,4 +112,4 @@ function pathLabel2(ctx,path,colors,scale) { //alternates between different colo
 //     ctx.fillText("1",x+.5*scale,y+.2*scale);
 // }
 
-export {partToCoords, skewPartToCoords, scale, rotate, offset, bbox, bboxCenter, pathLabel, pathLabel2};
+export {partToCoords, scale, rotate, offset, bbox, bboxCenter, pathLabel, pathLabel2};

@@ -90,7 +90,10 @@ export default function Home() {
         <ul>
           <li>Can enumerate all partitions of \(n\), forward or backward in lexicographical order.</li>
           <li>Can compare partitions based on containment (one diagram fits inside the other), dominance order ({String.raw`\(\sum_{j \le i} a_i \ge \sum_{j \le i} b_i\)`} for all \(i\)), and lexicographical order.</li>
-          <li>Can compute irreducible character table for the symmetric group as well as the permutation character table.</li>          
+          <li>Can compute irreducible character table for the symmetric group as well as the permutation character table.</li>
+          <li>Can compute raising/lowering operators of partitions (containment where it contains +1/-1 (resp.) square than the original partition). Useful for describing induced/restricted representations of irreps from {String.raw`\(S_n \to S_{n\pm1}\)`} in characteristic \(0\).</li>      
+          <li>Can compute raising/lowering p-good operators of partitions. Picture is a bit more complicated, but for partitions where no part is repeated \(\ge p\) times (\(p\)-regular), it corresponds to a simple module which all together form a complete set of inequivalent irreps of \(S_n\) over the field of \(p\) elements; the \(p\)-good raising/lowering describe what simple modules are included in the induced/restricted representations. See <a href="https://projecteuclid.org/journals/communications-in-mathematical-physics/volume-181/issue-1/Hecke-algebras-at-roots-of-unity-and-crystal-bases-of/cmp/1104287629.pdf">Lascoux, Leclerc, and Thibon's paper "Hecke Algebras at Roots of Unity and Crystal Bases of Quantum Affine Algebras"</a> for more.</li>
+          <li>Using the p-good operators, can derive the crystal graph of the basic representation of the affine Lie algebra {String.raw`\(\hat{\mathfrak{sl}}_p\)`} (ibid.).</li>
         </ul>
         </li>
 

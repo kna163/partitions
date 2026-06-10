@@ -3,6 +3,8 @@
 .ipynb_checkpoints
 # pytest
 *.pyc
+.pytest_cache/
+*__pycache__
 # node
 node_modules/
 *.log

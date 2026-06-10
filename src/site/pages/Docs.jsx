@@ -1,6 +1,7 @@
 import TOC from "../components/TOC.jsx";
 import Navbar from "../components/Navbar.jsx";
 import '../components/DocsSidebar.css';
+import { useEffect} from "react";
 
 const docs = [
   {
@@ -102,13 +103,13 @@ const docs = [
     name: "cmp_dom(p1, p2)",
     description: "`Part, Part -> Int | None`<br> \
     Returns -1 if p1 < p2, 0 if p1 == p2, 1 if p1 > p2, and None if there is none of these are true. <br> \
-    Ordering is determined by if one partition dominates another, that is for all \(i\), \(\sum a_i > \sum b_i \) then \(A=(a_i)\) dominates \(B=(b_i)\).",
+    Ordering is determined by if one partition dominates another, that is for all \\(i\\), \\(\\sum a_i > \\sum b_i \\) then \\(A=(a_i)\\) dominates \\(B=(b_i)\\).",
     examples: ["cmp_dom([3,2,1],[3,1,1])\n>>> 1", "cmp_dom([5,4,3,3,2],[4,3,1,1])\n>>> 1", "cmp_dom([5,4,3,3,2],[4,4,4])\n>>> 1", "cmp_dom([4,3,1,1,1],[4,2,2,2])\n>>> None"],
   },
   {
     name: "conj_part(part)",
     description: "`Part -> Part`<br> \
-    Returns the partition's conjugate, that is for \(\lambda=(\lambda_1,\ldots)\), the partition obtained by having \(\lambda_i\) squares in the \(i\)th column.",
+    Returns the partition's conjugate, that is for \\(\\lambda=(\\lambda_1,\\ldots)\\), the partition obtained by having \\(\\lambda_i\\) squares in the \\(i\\)th column.",
     examples: ["conj_part([3,2,1])\n>>> [3,2,1]", "conj_part([4,2])\n>>> [2,2,1,1]", "conj_part([9,6,6,3,1,1,1])\n>>> [7,4,4,3,3,3,1,1,1]"],
   },
   {
@@ -160,7 +161,7 @@ const docs = [
   {
     name: "from_lex(n,i)",
     description: "`Int, Int -> Part`<br> \
-    Returns the \\(i\)th partition of \\(n\) when in lexicographical order.",
+    Returns the \\(i\\)th partition of \\(n\) when in lexicographical order.",
     examples: ["from_lex(3,0)\n>>> [1,1,1]", "from_lex(6,5)\n>>> [3,2,1]", "from_lex(10,18)\n>>> [4,3,1,1,1]"],
   },
   {
@@ -217,6 +218,26 @@ const docs = [
     description: "`None -> None`<br> \
     Clears memorized values of get_pchar_value(char,conj_class) (for faster computation) in order to free up memory again. Once again, usually unnecessary unless computing many times with large partitions.",
   },
+  {
+    name: "raise_op",
+    description: "`Part -> List[Part]`<br> \
+    Returns a list of all partitions you can obtain from adding a single square to the original partition.",
+  },
+  {
+    name: "lower_op",
+    description: "`Part -> List[Part]`<br> \
+    Returns a list of all partitions you can obtain from removing a single square from the original partition.",
+  },
+  {
+    name: "raise_pgood",
+    description: "`None -> None`<br> \
+    Returns a list of all partitions you can obtain from adding a single square.",
+  },
+  {
+    name: "lower_pgood",
+    description: "`None -> None`<br> \
+    Clears memorized values of get_pchar_value(char,conj_class) (for faster computation) in order to free up memory again. Once again, usually unnecessary unless computing many times with large partitions.",
+  },
 
 ];
 
@@ -226,7 +247,6 @@ function formatDocs(s) {
 
 
 export default function Docs() {
-    
     return (
     <>
       <Navbar />
@@ -237,7 +257,7 @@ export default function Docs() {
       <main>
         {docs.map((d) => {
           const id = d.name.toLowerCase().replace(/\s+/g, '-');
-
+          console.log(formatDocs(d.description));
           return (
             <section key={id} id={id}>
               <h2>{d.name}</h2>
